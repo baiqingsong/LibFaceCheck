@@ -1,0 +1,46 @@
+plugins {
+    id 'com.android.library'
+}
+
+android {
+    namespace 'com.dawn.face_check'
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 28
+        targetSdk 34
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    // FFmpeg: mobile-ffmpeg 已下架(jcenter废弃)，如需 FFmpeg 功能请改用 ffmpeg-kit
+    // 参考: https://github.com/arthenica/ffmpeg-kit
+    // implementation 'com.arthenica:ffmpeg-kit-full:6.0-2'
+
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+
+    // MediaPipe Face Landmarker
+    implementation 'com.google.mediapipe:tasks-vision:0.10.0'
+
+    // PyTorch Android: 用于 bisenet 人脸分割模型
+    implementation 'org.pytorch:pytorch_android:1.10.0'
+    implementation 'org.pytorch:pytorch_android_torchvision:1.10.0'
+}
